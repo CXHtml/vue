@@ -121,6 +121,9 @@ var camelize = cached(function (str) {
  */
 
 
+/**
+ * Hyphenate a camelCase string.
+ */
 
 
 /**
@@ -218,7 +221,6 @@ var isNonPhrasingTag = makeMap(
  * http://erik.eae.net/simplehtmlparser/simplehtmlparser.js
  */
 
-// Regular Expressions for parsing tags and attributes
 var singleAttrIdentifier = /([^\s"'<>/=]+)/;
 var singleAttrAssign = /(?:=)/;
 var singleAttrValues = [
@@ -1123,7 +1125,6 @@ function handleError (err, vm, info) {
 /*  */
 /* globals MutationObserver */
 
-// can we use __proto__?
 var hasProto = '__proto__' in {};
 
 // Browser environment sniffing
@@ -2242,7 +2243,6 @@ var baseDirectives = {
 
 /*  */
 
-// configurable state
 var warn$2;
 var transforms$1;
 var dataGenFns;
@@ -2616,8 +2616,6 @@ function transformSpecialNewlines (text) {
 
 /*  */
 
-// these keywords should not appear inside expressions, but operators like
-// typeof, instanceof and in are allowed
 var prohibitedKeywordRE = new RegExp('\\b' + (
   'do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,' +
   'super,throw,while,yield,delete,export,import,return,switch,default,' +
@@ -2779,6 +2777,12 @@ function createCompiler (baseOptions) {
     return compiled
   }
 
+  compile.fromAST = function fromAST(
+    ast
+  ) {
+    return generate(ast, baseOptions)
+  };
+
   function compileToFunctions (
     template,
     options,
@@ -2924,7 +2928,7 @@ var parseStyleText = cached(function (cssText) {
   return res
 });
 
-// normalize possible array / string values into Object
+// merge static and dynamic style data on the same vnode
 
 
 /**
@@ -3184,6 +3188,10 @@ function def (obj, key, val, enumerable) {
   });
 }
 
+/**
+ * Parse simple path.
+ */
+
 /*  */
 
 
@@ -3220,9 +3228,6 @@ Dep.prototype.notify = function notify () {
   }
 };
 
-// the current target watcher being evaluated.
-// this is globally unique because there could be only one
-// watcher being evaluated at any time.
 Dep.target = null;
 
 /*
@@ -3494,11 +3499,6 @@ function dependArray (value) {
 
 /*  */
 
-/**
- * Option overwriting strategies are functions that handle
- * how to merge a parent option value and a child option
- * value into the final value.
- */
 var strats = config.optionMergeStrategies;
 
 /**
@@ -3677,8 +3677,7 @@ var defaultStrat = function (parentVal, childVal) {
 };
 
 /**
- * Merge two option objects into a new one.
- * Core utility used in both instantiation and inheritance.
+ * Validate component names
  */
 
 
@@ -3690,12 +3689,16 @@ var defaultStrat = function (parentVal, childVal) {
 
 /*  */
 
-/*  */
+
+
+/**
+ * Get the default value of a prop.
+ */
 
 /*  */
 
-// these are reserved for web because they are directly compiled away
-// during template compilation
+/*  */
+
 var isReservedAttr = makeMap('style,class');
 
 // attributes that should be using props for binding
@@ -3767,10 +3770,6 @@ function getTagNamespace (tag) {
 }
 
 /*  */
-
-/**
- * Query an element selector if it's not an element already.
- */
 
 /*  */
 

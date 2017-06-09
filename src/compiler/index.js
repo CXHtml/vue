@@ -75,6 +75,15 @@ export function createCompiler (baseOptions: CompilerOptions) {
     return compiled
   }
 
+  compile.fromAST = function fromAST (
+    ast: ASTElement | void
+  ): {
+    render: string,
+    staticRenderFns: Array<string>
+  } {
+    return generate(ast, baseOptions)
+  }
+
   function compileToFunctions (
     template: string,
     options?: CompilerOptions,
